@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="90c65b09-48d3-4d0f-9b16-b487efa12511" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="cicd-jenkinsFlow" doc:id="cef1c83a-e842-4ba3-a313-8d8e0fb411f0" >
+		<http:listener doc:name="Listener" doc:id="3fa650ca-b6ab-4465-b4be-ef7c2e938fa7" config-ref="HTTP_Listener_config" path="/cicd"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6b799733-4a9a-4838-aa8a-085adaddee08" message="request received"/>
+		<set-payload value='#["success"]' doc:name="Set Payload" doc:id="47969afc-b4b9-445e-82c1-f42a20d1421b" />
+	</flow>
+</mule>
